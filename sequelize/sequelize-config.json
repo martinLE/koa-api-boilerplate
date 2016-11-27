@@ -1,0 +1,32 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "dev",
+    "database": "api",
+    "host": "db",
+    "dialect": "postgres",
+    "underscored": true,
+    "migrationStorageTableName": "sequelize_meta",
+    "seederStorageTableName": "sequelize_data"
+  },
+  "test": {
+    "username": "",
+    "password": "",
+    "database": "",
+    "host": "",
+    "dialect": "postgres",
+    "underscored": true,
+    "migrationStorageTableName": "sequelize_meta",
+    "seederStorageTableName": "sequelize_data"
+  },
+  "production": {
+    "username": "",
+    "password": "",
+    "database": "",
+    "host": "",
+    "dialect": "postgres",
+    "underscored": true,
+    "migrationStorageTableName": "sequelize_meta",
+    "seederStorageTableName": "sequelize_data"
+  }
+}

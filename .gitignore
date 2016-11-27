@@ -1,0 +1,8 @@
+.vagrant/
+**/node_modules/**
+!node_modules/_
+*.iml
+webpack-stats.json
+npm-debug.log
+.DS_Store
+config/production.json

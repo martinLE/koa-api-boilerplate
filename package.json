@@ -1,0 +1,41 @@
+{
+  "name": "koa-api-boilerplate",
+  "version": "0.0.1",
+  "description": "",
+  "main": "app/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "bytes": "^2.2.0",
+    "chalk": "^1.1.1",
+    "co-body": "^4.0.0",
+    "config": "^1.16.0",
+    "humanize": "0.0.9",
+    "humanize-number": "0.0.2",
+    "jsonwebtoken": "^5.4.1",
+    "koa": "^1.1.2",
+    "koa-jwt": "^1.1.1",
+    "koa-router": "^5.2.3",
+    "link-package": "^0.1.0",
+    "pg": "^4.4.3",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^3.13.0",
+    "thunkify": "^2.1.2",
+    "winston": "^2.1.0",
+    "yargs": "^3.30.0"
+  },
+  "devDependencies": {
+    "eslint": "^1.9.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint -c .eslintrc app",
+    "dev": "nodemon -L ./app",
+    "reset": "sudo -u postgres dropdb api && sudo -u postgres createdb api && sequelize db:migrate && sleep 2 && sequelize db:seed",
+    "migrate": "sequelize db:migrate",
+    "seed": "sequelize db:seed"
+  },
+  "author": "Martin Gamnitzer",
+  "license": "MIT"
+}
