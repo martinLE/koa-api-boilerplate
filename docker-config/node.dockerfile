@@ -7,7 +7,11 @@ RUN apk add --no-cache sudo bash git
 COPY lib/dev.sh /
 
 # install global packages
-RUN npm install -g nodemon eslint git+https://git@github.com/martinLE/cli
+RUN npm install -g \
+    nodemon \
+    eslint \
+    npm-check-updates \
+    git+https://git@github.com/martinLE/cli
 
 EXPOSE 3000
 CMD "/dev.sh"
