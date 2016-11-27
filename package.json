@@ -1,7 +1,16 @@
 {
   "name": "koa-api-boilerplate",
   "version": "0.0.1",
-  "description": "",
+  "author": "Martin Gamnitzer",
+  "license": "MIT",
+  "description": "API boilerplate based on koa, including docker dev environment",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/martinLE/koa-api-boilerplate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/martinLE/koa-api-boilerplate/issues"
+  },
   "main": "app/index.js",
   "directories": {
     "test": "test"
@@ -37,6 +46,7 @@
     "seed": "sequelize db:seed",
     "update-packages": "npm-check-updates -u"
   },
-  "author": "Martin Gamnitzer",
-  "license": "MIT"
+  "bin": {
+    "koa-api-boilerplate": "add-api-user.js"
+  }
 }
