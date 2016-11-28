@@ -3,7 +3,6 @@ module.exports = (sequelize, DataTypes) => {
     title: DataTypes.TEXT,
     publisher_id: DataTypes.INTEGER
   }, {
-    paranoid: true,
     classMethods: {
       associate: (models) => {
         campaign.belongsTo(models.publisher);

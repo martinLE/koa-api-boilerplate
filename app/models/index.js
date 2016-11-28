@@ -8,6 +8,7 @@ const sequelize = new Sequelize(config.db.connectionString, {
   define: {
     underscored: true, // created_at instead of createdAt
     freezeTableName: true, // keep table names singular,
+    paranoid: true,
     classMethods: {
 
     },
