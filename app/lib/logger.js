@@ -4,7 +4,7 @@
  */
 
 const winston = require('winston');
-const common = require('./common');
+// const common = require('./common');
 
 // in dev, only log to stdout, in any other case log to filename
 let transports = [];

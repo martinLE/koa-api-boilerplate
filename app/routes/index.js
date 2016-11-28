@@ -16,10 +16,10 @@ router.use(function *(next) {
 });
 
 // load all routes from files
-require("fs").readdirSync(__dirname).forEach(function(file) {
+require('fs').readdirSync(__dirname).forEach(function(file) {
   if((file.indexOf('.js') > 0) && (file !== 'index.js')) {
-   let route = require('./' + file);
-   router.use(route.routes());
+    let route = require('./' + file);
+    router.use(route.routes());
   }
 });
 

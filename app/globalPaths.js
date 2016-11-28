@@ -1,4 +1,4 @@
-const linkPackage = require("link-package");
+const linkPackage = require('link-package');
 
 linkPackage('app/lib', 'lib');
 linkPackage('app/models', 'models');
