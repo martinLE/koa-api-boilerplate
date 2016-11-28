@@ -6,8 +6,8 @@ exports.authenticateUser = function *(next) {
     // add user info to state
     this.state = this.state || {};
     this.state.user = claim;
-    yield next;
   } catch (e) {
-    this.throw(401, JSON.stringify({success: false, msg: e}));
+    this.throw(401, e);
   }
+  yield next;
 };
