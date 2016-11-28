@@ -1,7 +1,5 @@
 const koaJwtAuth  = require('./middleware/koa-jwt-auth');
 const koaRouter   = require('koa-router');
-const db          = require('models');
-
 
 // all routes in the API start with /api
 const router = new koaRouter({
@@ -17,15 +15,12 @@ router.use(function *(next) {
   yield next;
 });
 
-
-router.get('/', function *(next) {
-
-  let user = yield db.apiUser.findById(1);
-
-  this.body = {aha: user};
-
-
-  yield next;
+// load all routes from files
+require("fs").readdirSync(__dirname).forEach(function(file) {
+  if((file.indexOf('.js') > 0) && (file !== 'index.js')) {
+   let route = require('./' + file);
+   router.use(route.routes());
+  }
 });
 
 module.exports = router.routes();
