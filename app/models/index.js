@@ -3,7 +3,6 @@ const path = require('path');
 const Sequelize = require('sequelize');
 const config  = require('config');
 
-
 const sequelize = new Sequelize(config.db.connectionString, {
   define: {
     underscored: true, // created_at instead of createdAt
