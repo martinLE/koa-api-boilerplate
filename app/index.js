@@ -20,7 +20,6 @@ app.use(function *(next) {
     yield next;
   } catch (e) {
     logger.error(e);
-    console.log('mhhh');
     this.status = e.status || 500;
     this.body = JSON.stringify({success: false, msg: e.toString()});
     this.app.emit('error', e, this);
