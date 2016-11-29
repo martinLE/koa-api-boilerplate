@@ -1,7 +1,8 @@
-const fs = require('fs');
-const path = require('path');
+const fs        = require('fs');
+const path      = require('path');
 const Sequelize = require('sequelize');
-const config  = require('config');
+const config    = require('config');
+const logger    = require('lib/logger');
 
 const sequelize = new Sequelize(config.db.connectionString, {
   define: {
@@ -14,7 +15,9 @@ const sequelize = new Sequelize(config.db.connectionString, {
     instanceMethods: {
     }
   },
-  logging: config.logging !== undefined ? config.logging : console.log
+  logging: function(str) {
+    logger.debug(str);
+  }
 });
 
 const db = {};

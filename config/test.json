@@ -1,0 +1,6 @@
+{
+  "db" : {
+    "connectionString": "postgres://postgres:dev@db:5432/api_test"
+  },
+  "port" : 3001
+}

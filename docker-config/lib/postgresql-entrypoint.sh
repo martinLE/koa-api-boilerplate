@@ -25,6 +25,9 @@ if [ -z "$(ls -A "$PGDATA")" ]; then
       createSql="CREATE DATABASE $POSTGRES_DB;"
       echo $createSql | gosu postgres postgres --single -jE
       echo
+      createSql="CREATE DATABASE ${POSTGRES_DB}_test;"
+      echo $createSql | gosu postgres postgres --single -jE
+      echo
     fi
 
     if [ "$POSTGRES_USER" != 'postgres' ]; then

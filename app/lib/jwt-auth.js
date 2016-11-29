@@ -4,7 +4,6 @@
  * (This is located in routes/middleware/koa-jwt-auth for better Separation of Concerns)
  */
 
-const common    = require('lib/common');
 const thunkify  = require('thunkify');
 const _JWT      = require('jsonwebtoken');
 const fs        = require('fs');
@@ -13,9 +12,8 @@ const db        = require('models');
 
 // Make verify function play nice with co/koa
 const JWT = {decode: _JWT.decode, sign: _JWT.sign, verify: thunkify(_JWT.verify)};
-
-const publicKeyFile  = common.getBasePath() + '/../config/' + config.jwt.publicKeyFile;
-const privateKeyFile = common.getBasePath() + '/../config/' + config.jwt.privateKeyFile;
+const publicKeyFile  = __dirname + '/../../config/' + config.jwt.publicKeyFile;
+const privateKeyFile = __dirname + '../../config/' + config.jwt.privateKeyFile;
 const opts = { algorithm: 'RS256' };
 
 exports.authenticateUser = function *(authHeader) {

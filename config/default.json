@@ -1,7 +1,4 @@
 {
-  "db" : {
-    "connectionString": "postgres://postgres:dev@db:5432/api"
-  },
   "jwt" : {
     "privateKeyFile" : "demo.rsa",
     "publicKeyFile" : "demo.rsa.pub"

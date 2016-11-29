@@ -3,10 +3,10 @@
 require('./globalPaths');
 
 const app     = require('koa')();
-// const parse   = require('co-body');
-// const config  = require('config');
-const logger  = require('lib/logger');
 const routes  = require('routes');
+// const parse   = require('co-body');
+const config  = require('config');
+const logger  = require('lib/logger');
 const common  = require('lib/common');
 
 // log routes and runtime in dev only
@@ -27,4 +27,6 @@ app.use(function *(next) {
 });
 
 app.use(routes);
-app.listen(3000);
+app.listen(config.port);
+module.exports = app;
+

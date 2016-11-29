@@ -11,6 +11,7 @@ RUN npm install -g \
     nodemon \
     eslint \
     npm-check-updates \
+    mocha \
     git+https://git@github.com/martinLE/cli
 
 EXPOSE 3000
