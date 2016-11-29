@@ -6,4 +6,4 @@ webpack-stats.json
 npm-debug.log
 .DS_Store
 config/production.json
-.log
+log
