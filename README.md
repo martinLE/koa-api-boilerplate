@@ -21,7 +21,7 @@ You'll need to install docker compose. Then run
 ```bash
 docker-compose up
 ```
-This will start a node container ("koa-api-node") and a postgres container ("koa-api-db"). When starting for the first time, the DB must be seeed. Log in to the node container and run the job:
+This will start a node container ("koa-api-node") and a postgres container ("koa-api-db"). When starting for the first time, the DB must be seeded. Log in to the node container and run the job:
 ```bash
 docker exec -ti koa-api-node bash -l
 npm run reset
