@@ -16,6 +16,8 @@
     "test": "test"
   },
   "dependencies": {
+    "@types/koa": "^2.0.33",
+    "bluebird": "^3.4.6",
     "bytes": "^2.2.0",
     "chalk": "^1.1.1",
     "co-body": "^4.0.0",
@@ -23,9 +25,10 @@
     "humanize": "0.0.9",
     "humanize-number": "0.0.2",
     "jsonwebtoken": "^7.1.9",
-    "koa": "^1.1.2",
+    "koa": "^2.0.0",
     "koa-jwt": "^1.1.1",
-    "koa-router": "^5.2.3",
+    "koa-router": "git://github.com/alexmingoia/koa-router#master",
+    "koa-unless": "^1.0.0",
     "link-package": "^0.1.0",
     "pg": "^6.1.0",
     "pg-hstore": "^2.3.2",
@@ -35,15 +38,18 @@
     "yargs": "^6.4.0"
   },
   "devDependencies": {
+    "@types/node": "0.0.2",
     "chai": "^3.5.0",
     "eslint": "^3.11.0",
-    "supertest": "^2.0.1"
+    "supertest": "^2.0.1",
+    "ts-node": "^1.7.0",
+    "typescript": "^2.0.10"
   },
   "scripts": {
     "test": "NODE_ENV=test mocha ./test/*",
     "test-reset": "NODE_ENV=test node bin/drop-all-tables.js && NODE_ENV=test sequelize db:migrate && NODE_ENV=test sequelize db:seed:all && NODE_ENV=test mocha ./test/*",
     "lint": "eslint -c .eslintrc app",
-    "dev": "nodemon -L ./app",
+    "dev": "nodemon -L --exec ./node_modules/.bin/ts-node -- app/index.ts",
     "reset": "node bin/drop-all-tables.js && sequelize db:migrate && sequelize db:seed:all",
     "migrate": "sequelize db:migrate",
     "seed": "sequelize db:seed:all",

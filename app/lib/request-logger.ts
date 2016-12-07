@@ -34,17 +34,17 @@ const colorCodes = {
  */
 
 function dev() {
-  return function *logger(next) {
+  return async(ctx, next) => {
     // request
     const start = new Date;
     winston.debug(chalk.gray('<--')
       + ' ' + chalk.bold('%s')
       + ' ' + chalk.gray('%s'),
-        this.method,
-        this.originalUrl);
+        ctx.method,
+        ctx.originalUrl);
 
     try {
-      yield next;
+      await next();
     } catch (err) {
       // log uncaught downstream errors
       log(this, start, null, err);
@@ -54,7 +54,7 @@ function dev() {
     // calculate the length of a streaming response
     // by intercepting the stream with a counter.
     // only necessary if a content-length header is currently not set.
-    const length = this.response.length;
+    const length = ctx.response.length;
     const body = this.body;
     let counter;
     if (null == length && body && body.readable) {
@@ -64,8 +64,8 @@ function dev() {
 
     // log when the response is finished or closed,
     // whichever happens first.
-    const ctx = this;
-    const res = this.res;
+    // const ctx = this;
+    const res = ctx.res;
 
     const onfinish = done.bind(null, 'finish');
     const onclose = done.bind(null, 'close');
@@ -85,7 +85,7 @@ function dev() {
  * Log helper.
  */
 
-function log(ctx, start, len, err, event) {
+function log(ctx, start, len, err, event?) {
   // get the status code of the response
   const status = err
     ? (err.status || 500)
@@ -108,7 +108,6 @@ function log(ctx, start, len, err, event) {
   const upstream = err ? chalk.red('xxx')
     : event === 'close' ? chalk.yellow('-x-')
     : chalk.gray('-->');
-
   winston.debug(upstream
     + ' ' + chalk.bold('%s')
     + ' ' + chalk.gray('%s')
@@ -129,9 +128,9 @@ function log(ctx, start, len, err, event) {
  */
 
 function time(start) {
-  let delta = new Date - start;
-  delta = delta < 10000
+  let delta = <number>Date.now() - start;
+  let result = delta < 10000
     ? delta + 'ms'
     : Math.round(delta / 1000) + 's';
-  return humanize(delta);
+  return humanize(result);
 }

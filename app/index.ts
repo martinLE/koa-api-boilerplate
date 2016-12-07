@@ -1,32 +1,30 @@
-'use strict'; //eslint-disable-line
-
 require('./globalPaths');
 
-const app     = require('koa')();
-const routes  = require('routes');
-// const parse   = require('co-body');
+import * as Koa from 'koa';
+//const routes  = require('routes');
+import routes  from './routes';
 const config  = require('config');
 const logger  = require('lib/logger');
 const common  = require('lib/common');
 
+var app = new Koa();
 // log routes and runtime in dev only
 if(common.getEnv() === 'development') {
   app.use(require('lib/request-logger')());
 }
 
 // empty middleware, just catches everything
-app.use(function *(next) {
+app.use(async(ctx, next) => {
   try {
-    yield next;
+    await next();
   } catch (e) {
     logger.error(e);
-    this.status = e.status || 500;
-    this.body = JSON.stringify({success: false, msg: e.toString()});
-    this.app.emit('error', e, this);
+    ctx.status = e.status || 500;
+    ctx.body = JSON.stringify({success: false, msg: e.toString()});
+    ctx.app.emit('error', e, ctx);
   }
 });
 
 app.use(routes);
 app.listen(config.port);
-module.exports = app;
-
+export default app;

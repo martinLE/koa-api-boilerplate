@@ -1,3 +1,3 @@
 #!/bin/sh
 
-cd /src && npm install && nodemon --legacy-watch ./app
+cd /src && npm install && npm run dev

@@ -8,15 +8,15 @@ const thunkify  = require('thunkify');
 const _JWT      = require('jsonwebtoken');
 const fs        = require('fs');
 const config    = require('config');
-const db        = require('models');
+import db from 'models';
 
 // Make verify function play nice with co/koa
-const JWT = {decode: _JWT.decode, sign: _JWT.sign, verify: thunkify(_JWT.verify)};
+const JWT = {decode: _JWT.decode, sign: _JWT.sign, verify: _JWT.verify};
 const publicKeyFile  = __dirname + '/../../config/' + config.jwt.publicKeyFile;
 const privateKeyFile = __dirname + '../../config/' + config.jwt.privateKeyFile;
 const opts = { algorithm: 'RS256' };
 
-exports.authenticateUser = function *(authHeader) {
+exports.authenticateUser = async(authHeader) => {
 
   let token, parts, scheme, credentials;
   const secret = fs.readFileSync(publicKeyFile);
@@ -40,9 +40,9 @@ exports.authenticateUser = function *(authHeader) {
 
   // validate auth header
   try {
-    let claim = yield JWT.verify(token, secret, opts);
+    let claim = await JWT.verify(token, secret, opts);
     // check, if user is valid
-    let user = yield db.apiUser.findById(claim.api_user_id);
+    let user = await db.apiUser.findById(claim.api_user_id);
     if(!user) throw ('Invalid user');
     return claim;
   } catch(e) {
@@ -55,6 +55,5 @@ module.exports.sign = function(claim) {
   return _JWT.sign(claim, fs.readFileSync(privateKeyFile), opts);
 };
 
-//TODO: Needed for what?
 module.exports.verify = _JWT.verify;
 module.exports.decode = _JWT.decode;

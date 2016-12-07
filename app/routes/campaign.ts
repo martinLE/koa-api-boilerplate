@@ -15,4 +15,4 @@ const router  = require('koa-router')();
 //   this.body = data;
 // });
 
-module.exports = router;
+export default router;

@@ -20,12 +20,12 @@ const sequelize = new Sequelize(config.db.connectionString, {
   }
 });
 
-const db = {};
+const db = <any>{};
 
 fs
   .readdirSync(__dirname)
   .filter((file) => {
-    return (file.indexOf('.') !== 0) && (file !== 'index.js');
+    return (file.indexOf('.') !== 0) && (file !== 'index.ts');
   })
   .forEach((file) => {
     const model = sequelize.import(path.join(__dirname, file));
@@ -47,4 +47,4 @@ db.parseError = function(err) {
   return (typeof err.errors !== 'undefined' && err.errors.length > 0) ? err.errors[0].message : err.message;
 };
 
-module.exports = db;
+export default db;

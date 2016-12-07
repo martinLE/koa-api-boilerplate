@@ -1,6 +1,6 @@
 {
   "watch": [
-    "app/*.js",
-    "app/**/*.js"
+    "app/*.ts",
+    "app/**/*.ts"
   ]
 }

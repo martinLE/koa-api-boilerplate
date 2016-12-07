@@ -12,6 +12,7 @@ RUN npm install -g \
     eslint \
     npm-check-updates \
     mocha \
+    typescript \
     git+https://git@github.com/martinLE/cli
 
 EXPOSE 3000
